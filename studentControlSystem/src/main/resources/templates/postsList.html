@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>疫情系统后台管理</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <!--对话框-->
+    <link rel="stylesheet" href="js/jconfirm/jquery-confirm.min.css">
+</head>
+<body>
+
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+
+        <div th:include="/index"></div>
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+            <div class="container-fluid">
+
+
+                <div class="col-md-12">
+                    <!--表单-->
+                    <table class="table table-hover " id="mytable">
+                        <tr>
+                            <th>编号</th>
+                            <th>学生学号</th>
+                            <th>物品</th>
+                            <th>所在位置</th>
+<!--                            <th>宿舍号</th>-->
+<!--                            <th>床位号</th>-->
+<!--                            <th>具体位置</th>-->
+                            <th>收件地址</th>
+                            <th>快递单号</th>
+                            <th>是否已邮寄</th>
+                            <th>操作</th>
+                        </tr>
+                    </table>
+                </div>
+
+
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">请输入快递单号</h4>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" id="postsId" name="postsId">
+                                <input type="text" class="form-control" placeholder="快递单号..." name="oddNumber"
+                                       id="oddNumber"/>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary" onclick="post()">点击提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+<script src="js/jconfirm/jquery-confirm.min.js"></script>
+<!--公共JS-->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+
+    window.onload = function () {
+        load();
+    };
+
+    function load() {
+        $.ajax({
+            url: '/posts/postsList',
+            method: 'get',
+            success: function (data) {
+                if ("success" === data.status) {
+                    var html;
+                    var value = data.data;
+                    //清空表格
+                    $("#mytable tr:not(:first)").empty();
+                    var id = 1;
+                    for (var i in value) {
+                        var pd = value[i];
+                        var isDispose;
+                        if (pd.dispose == 1) {
+                            isDispose = "已邮寄";
+                        } else {
+                            isDispose = "未邮寄";
+                        }
+                        html += '<tr>';
+                        html += '<td>' + id++ + '</td>';
+                        html += '<td>' + pd.studentId + '</td>';
+                        html += '<td>' + pd.goods + '</td>';
+                        html += '<td>' + pd.gongyu + '</td>';
+                        //html += '<td>' + pd.sushe+'宿舍' + '</td>';
+                        //html += '<td>' + pd.chuangwei+'床位' + '</td>';
+                        //html += '<td>' + pd.weizhi+'位置' + '</td>';
+                        html += '<td>' + pd.address + '</td>';
+                        //html += '<td>' + pd.name + '</td>';
+                        //html += '<td>' + pd.phone + '</td>';
+                        html += '<td>' + pd.oddNumber + '</td>';
+                        html += '<td>' + isDispose + '</td>';
+                        // html += '<td><a  href="#" onclick="detailPage(' + pd.id + ')">查询详情</ a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="#" onclick="del(' + pd.id + ')">删除</ a></td>';
+                        html += '<td><a  href="#" onclick="del(' + pd.id + ')">删除</ a>&nbsp;<a onclick="show(' + pd.id + ')" href="#" >邮寄</ a></td>';
+                        html += '</tr>';
+                    }
+                    $("#mytable").append(html);
+                }
+            }
+        });
+    }
+
+    function del(id) {
+        if (confirm("您确定要删除吗？")) {
+            $.ajax({
+                url: '/posts/delPosts?postsId=' + id,
+                method: 'get',
+                success: function (data) {
+                    if ("success" === data.status) {
+                        $.confirm({
+                            title: '成功提示',
+                            content: data.data,
+                            type: 'green',
+                            typeAnimated: true,
+                            buttons: {
+                                tryAgain: {
+                                    text: '确定',
+                                    btnClass: 'btn-green',
+                                    action: function () {
+                                    }
+                                },
+                            }
+                        });
+                        load();
+                    } else {
+                        $.confirm({
+                            title: '提示',
+                            content: data.data,
+                            type: 'red',
+                            typeAnimated: true,
+                            buttons: {
+                                tryAgain: {
+                                    text: '确定',
+                                    btnClass: 'btn-red',
+                                    action: function () {
+                                    }
+                                },
+                            }
+                        });
+                    }
+                }
+            })
+        }
+    }
+
+    function post(id) {
+        var postsId = $("#postsId").val();
+        var oddNumber = $("#oddNumber").val();
+        if (oddNumber.length <= 0) {
+            $.confirm({
+                title: '提示',
+                content: "请输入正确的快递单号",
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: '确定',
+                        btnClass: 'btn-red',
+                        action: function () {
+                        }
+                    },
+                }
+            });
+        }
+        $.ajax({
+            url: '/posts/post',
+            method: 'post',
+            data: {
+                postsId: postsId,
+                oddNumber: oddNumber
+            },
+            success: function (data) {
+                $('#myModal').modal('hide');
+                $("#postsId").val();
+                $("#oddNumber").val();
+                if ("success" === data.status) {
+                    $.confirm({
+                        title: '成功提示',
+                        content: data.data,
+                        type: 'green',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-green',
+                                action: function () {
+                                }
+                            },
+                        }
+                    });
+                    load();
+                } else {
+                    $.confirm({
+                        title: '提示',
+                        content: data.data,
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-red',
+                                action: function () {
+                                }
+                            },
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+    function show(id) {
+        $('#myModal').modal('show');
+        $("#postsId").val(id);
+    }
+
+    $(document).ready(function (e) {
+
+    });
+
+
+</script>
+</body>
+</html>

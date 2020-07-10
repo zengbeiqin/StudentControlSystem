@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>疫情系统后台管理</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <!--对话框-->
+    <link rel="stylesheet" href="js/jconfirm/jquery-confirm.min.css">
+</head>
+<body>
+
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+
+        <div th:include="/index"></div>
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+            <div class="container-fluid">
+
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header"><h4>添加新闻</h4></div>
+                        <div class="card-body">
+
+                            <form class="form-horizontal" action="#" method="post" id="myform">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="newsName">新闻标题</label>
+                                    <div class="col-md-7">
+                                        <input class="form-control" type="text" id="newsName" name="newsName"
+                                               placeholder="请输入新闻标题..">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="content">内容</label>
+                                    <div class=" col-md-7">
+                                        <textarea class="form-control" id="content" name="content" rows="5" value="" placeholder="描述"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-9 col-md-offset-3">
+                                        <button class="btn btn-primary" type="button" onclick="add()">保存</button>
+                                        <button class="btn btn-danger" type="reset">取消</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </main>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+<script src="js/jconfirm/jquery-confirm.min.js"></script>
+<!--公共JS-->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+
+    window.onload = function () {
+
+    };
+
+    function add() {
+        var password = $("#password").val();
+        var ispassword = $("#ispassword").val();
+        if (password != ispassword) {
+            $.confirm({
+                title: '提示',
+                content: '两次输入的密码不相等！',
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: '确定',
+                        btnClass: 'btn-red',
+                        action: function () {
+                        }
+                    },
+                }
+            });
+            return;
+        }
+
+        var value = $("#myform").serialize();
+        $.ajax({
+            url: '/news/addNews',
+            method: 'post',
+            data: value,
+            success: function (data) {
+                if ("success" === data.status) {
+                    $.confirm({
+                        title: '成功提示',
+                        content: data.data,
+                        type: 'green',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-green',
+                                action: function () {
+                                    window.location.href = "http://localhost:8080/toNewsList";
+                                }
+                            },
+                        }
+                    });
+                } else {
+                    $.confirm({
+                        title: '提示',
+                        content: data.data,
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-red',
+                                action: function () {
+                                }
+                            },
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>

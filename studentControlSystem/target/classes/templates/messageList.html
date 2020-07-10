@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>疫情系统后台管理</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <!--对话框-->
+    <link rel="stylesheet" href="js/jconfirm/jquery-confirm.min.css">
+</head>
+<body>
+
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+
+        <div th:include="/index"></div>
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+            <div class="container-fluid">
+
+
+            <div class="col-md-12">
+                <!--表单-->
+                <table class="table table-hover table-bordered" id="mytable">
+                    <tr>
+                        <th>编号</th>
+                        <th>留言用户名</th>
+                        <th>内容</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                </table>
+            </div>
+
+
+
+            </div>
+
+        </main>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+<script src="js/jconfirm/jquery-confirm.min.js"></script>
+<!--公共JS-->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+
+    window.onload = function(){
+      load();
+    };
+
+    function load() {
+        $.ajax({
+            url:'/message/messageList',
+            method:'get',
+            success:function (data) {
+                if ("success"=== data.status){
+                    var html;
+                    var value = data.data;
+                    //清空表格
+                    $("#mytable tr:not(:first)").empty();
+                    var id = 1;
+                    for (var i in value) {
+                        var pd = value[i];
+                        html += '<tr>';
+                        html += '<td>' + id++ + '</td>';
+                        html += '<td>' + pd.userName + '</td>';
+                        html += '<td>' + pd.content + '</td>';
+                        html += '<td>' + pd.messageTime + '</td>';
+                        html += '<td><a  href="#" onclick="del(' + pd.id + ')">删除</ a></td>';
+                        html += '</tr>';
+                    }
+                    $("#mytable").append(html);
+                }
+            }
+        });
+    }
+    function del(id){
+        if (confirm("您确定要删除吗？")){
+            $.ajax({
+                url: '/message/messageDel?messageId='+id,
+                method: 'get',
+                success: function (data) {
+                    if ("success"=== data.status){
+                        $.confirm({
+                            title: '成功提示',
+                            content: data.data,
+                            type: 'green',
+                            typeAnimated: true,
+                            buttons: {
+                                tryAgain: {
+                                    text: '确定',
+                                    btnClass: 'btn-green',
+                                    action: function () {
+                                    }
+                                },
+                            }
+                        });
+                        load();
+                    }else {
+                        $.confirm({
+                            title: '提示',
+                            content: data.data,
+                            type: 'red',
+                            typeAnimated: true,
+                            buttons: {
+                                tryAgain: {
+                                    text: '确定',
+                                    btnClass: 'btn-red',
+                                    action: function () {
+                                    }
+                                },
+                            }
+                        });
+                    }
+                }
+            })
+        }
+    }
+    $(document).ready(function (e) {
+
+    });
+
+
+</script>
+</body>
+</html>

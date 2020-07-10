@@ -1,0 +1,10 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+#china_chart{
+    background-color: rgba(255,255,255,0);	//将容器设置透明，这样body若设置背景则可见
+height: 700px;		//echarts的容器高度必须设置为具体值
+width: 100%;		//宽度可用百分比表示
+}
+

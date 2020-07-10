@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>个人信息完善</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <!--对话框-->
+    <link rel="stylesheet" href="js/jconfirm/jquery-confirm.min.css">
+
+
+</head>
+<body>
+
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+
+        <div th:include="/index"></div>
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+            <div class="container-fluid">
+
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header"><h3>个人信息完善</h3></div>
+                        <div class="card-body">
+
+                            <form class="form-horizontal" action="#" method="post" id="myform">
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="sid">身份证号</label>
+                                    <div class="col-md-4">
+                                        <input class="form-control" type="text" id="sid" name="sid"
+                                               placeholder="请输入您的身份证号..">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" >性别</label>
+                                    <div class=" col-md-7">
+                                        <label>
+                                            <input type="radio" name="sex"  value="0" checked>
+                                        </label>男
+                                        <label>
+                                            <input type="radio" name="sex"  value="1" >
+                                        </label>女
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" >是否为校内住宿</label>
+                                    <div class=" col-md-7">
+                                        <label>
+                                            <input type="radio" name="inshool"  value="0" checked>
+                                        </label>校外住宿
+                                        <label>
+                                            <input type="radio" name="inshool"  value="1" >
+                                        </label>校内住宿
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="banhao">班号</label>
+                                    <div class="col-md-4">
+                                        <input class="form-control" type="text" id="banhao" name="banhao"
+                                               placeholder="请输入您的班号..">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="sushehao">宿舍号</label>
+                                    <div class="col-md-4">
+                                        <input class="form-control" type="text" id="sushehao" name="sushehao"
+                                               placeholder="请输入您的宿舍号..">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="jzphone">家长手机号</label>
+                                    <div class="col-md-4">
+                                        <input class="form-control" type="text" id="jzphone" name="jzphone"
+                                               placeholder="请输入您的家长手机号..">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="dyphone">导员手机号</label>
+                                    <div class="col-md-4">
+                                        <input class="form-control" type="text" id="dyphone" name="dyphone"
+                                               placeholder="请输入您的导员手机号..">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-md-offset-3">
+                                        <button class="btn btn-primary" type="button" onclick="add()">保存</button>
+                                        <button class="btn btn-danger" type="reset">取消</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </main>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+<script src="js/jconfirm/jquery-confirm.min.js"></script>
+<!--公共JS-->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+
+    window.onload = function () {
+
+    };
+
+    function add() {
+        var value = $("#myform").serialize();
+        $.ajax({
+            url: '/health/addHealth',
+            method: 'post',
+            data: value,
+            success: function (data) {
+                if ("success" === data.status) {
+                    $.confirm({
+                        title: '成功提示',
+                        content: '个人信息保存成功！',
+                        type: 'green',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-green',
+                                action: function () {
+                                    // window.location.href = "http://localhost:8080/toNewsList";
+                                }
+                            },
+                        }
+                    });
+                } else {
+                    $.confirm({
+                        title: '提示',
+                        content: '已完成，无需重复保存',
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-red',
+                                action: function () {
+                                }
+                            },
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>

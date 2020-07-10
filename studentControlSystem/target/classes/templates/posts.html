@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>邮寄物品</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <!--对话框-->
+    <link rel="stylesheet" href="js/jconfirm/jquery-confirm.min.css">
+</head>
+<body>
+
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+
+        <div th:include="/index"></div>
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+            <div class="container-fluid">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header"><h4>邮寄物品</h4></div>
+                        <div class="card-body">
+
+                            <form class="form-horizontal" action="#" method="post" id="myform">
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="goods">物品名称</label>
+                                    <div class="col-md-7">
+                                        <input class="form-control" type="text" id="goods" name="goods"
+                                               placeholder="请输入物品名称">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="gongyu">物品所在公寓号</label>
+                                    <div class="col-md-7">
+                                        <input class="form-control" type="text" id="gongyu" name="gongyu"
+                                               placeholder="请输入物品所在公寓号">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="sushe">物品所在宿舍号</label>
+                                    <div class="col-md-7">
+                                        <input class="form-control" type="text" id="sushe" name="sushe"
+                                               placeholder="请输入物品所在宿舍号">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="chuangwei">物品所在床位号</label>
+                                    <div class="col-md-7">
+                                        <input class="form-control" type="text" id="chuangwei" name="chuangwei"
+                                               placeholder="请输入物品所在床位号">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="weizhi">物品所在具体位置</label>
+                                    <div class="col-md-7">
+                                        <input class="form-control" type="text" id="weizhi" name="weizhi"
+                                               placeholder="请输入物品所在的具体位置">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" >若为贵重物品，邮寄时是否需要保价</label>
+                                    <div class=" col-md-7">
+                                        <label>
+                                            <input type="radio" name="baojia"  value="0" checked>
+                                        </label>不需要保价
+                                        <label>
+                                            <input type="radio" name="baojia"  value="1" >
+                                        </label>需要保价
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="baojiaprice">若保价，请输入保价价格</label>
+                                    <div class="col-md-7">
+                                        <input class="form-control" type="text" id="baojiaprice" name="baojiaprice"
+                                               placeholder="请输入保价价格">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="address">邮寄地址</label>
+                                    <div class="col-md-7">
+                                        <input class="form-control" type="text" id="address" name="address"
+                                               placeholder="请输入邮寄地址..">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="name">收件人姓名</label>
+                                    <div class="col-md-7">
+                                        <input class="form-control" type="text" id="name" name="name"
+                                               placeholder="请输入收件人姓名">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="phone">收件人手机号</label>
+                                    <div class="col-md-7">
+                                        <input class="form-control" type="text" id="phone" name="phone"
+                                               placeholder="请输入收件人手机号">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-md-offset-3">
+                                        <button class="btn btn-primary" type="button" onclick="add()">提交</button>
+                                        <button class="btn btn-danger" type="reset">取消</button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+<script src="js/jconfirm/jquery-confirm.min.js"></script>
+<!--公共JS-->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+
+    window.onload = function () {
+
+    };
+
+    function add() {
+
+        var value = $("#myform").serialize();
+        $.ajax({
+            url: '/posts/addPosts',
+            method: 'post',
+            data: value,
+            success: function (data) {
+                if ("success" === data.status) {
+                    $.confirm({
+                        title: '成功提示',
+                        content: data.data,
+                        type: 'green',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-green',
+                                action: function () {
+                                   // window.location.href = "http://localhost:8080/toUserList";
+                                }
+                            },
+                        }
+                    });
+                } else {
+                    $.confirm({
+                        title: '提示',
+                        content: data.data,
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-red',
+                                action: function () {
+                                }
+                            },
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>

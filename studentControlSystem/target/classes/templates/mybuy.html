@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>购买物品</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <!--对话框-->
+    <link rel="stylesheet" href="js/jconfirm/jquery-confirm.min.css">
+</head>
+<body>
+
+
+
+
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+
+        <div th:include="/index"></div>
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>我的订单</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>订单序号</th>
+                                            <th>供货点</th>
+                                            <th>商品名称</th>
+                                            <th>单价</th>
+                                            <th>配送状态</th>
+                                            <th>配送进度</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+
+
+                                        <tr>
+                                            <td>1</td>
+                                            <td>大服药房</td>
+                                            <td>N95口罩</td>
+                                            <td>1元</td>
+                                            <td><span class="label label-danger">未开始配送</span></td>
+                                            <td>
+                                                <div class="progress progress-striped progress-sm">
+                                                    <div class="progress-bar progress-bar-danger" style="width: 0%;"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>2</td>
+                                            <td>学苑超市</td>
+                                            <td>压缩饼干</td>
+                                            <td>12元</td>
+                                            <td><span class="label label-info">正在配送</span></td>
+                                            <td>
+                                                <div class="progress progress-striped progress-sm">
+                                                    <div class="progress-bar progress-bar-info" style="width: 40%;"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>3</td>
+                                            <td>大服药房</td>
+                                            <td>消毒水</td>
+                                            <td>35元</td>
+                                            <td><span class="label label-success">已送达</span></td>
+                                            <td>
+                                                <div class="progress progress-striped progress-sm">
+                                                    <div class="progress-bar progress-bar-success" style="width: 100%;"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>4</td>
+                                            <td>大服水果摊</td>
+                                            <td>苹果</td>
+                                            <td>5元</td>
+                                            <td><span class="label label-info">正在配送</span></td>
+                                            <td>
+                                                <div class="progress progress-striped progress-sm">
+                                                    <div class="progress-bar progress-bar-info" style="width: 70%;"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>5</td>
+                                            <td>家家悦</td>
+                                            <td>泡面</td>
+                                            <td>4元</td>
+                                            <td><span class="label label-success">已送达</span></td>
+                                            <td>
+                                                <div class="progress progress-striped progress-sm">
+                                                    <div class="progress-bar progress-bar-success" style="width: 100%;"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>6</td>
+                                            <td>学子超市</td>
+                                            <td>洗发水</td>
+                                            <td>29元</td>
+                                            <td><span class="label label-danger">未开始配送</span></td>
+                                            <td>
+                                                <div class="progress progress-striped progress-sm">
+                                                    <div class="progress-bar progress-bar-danger" style="width: 0%;"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>7</td>
+                                            <td>学子超市</td>
+                                            <td>牙膏</td>
+                                            <td>12元</td>
+                                            <td><span class="label label-success">已送达</span></td>
+                                            <td>
+                                                <div class="progress progress-striped progress-sm">
+                                                    <div class="progress-bar progress-bar-success" style="width: 100%;"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>8</td>
+                                            <td>家家悦</td>
+                                            <td>纯牛奶</td>
+                                            <td>6元</td>
+                                            <td><span class="label label-danger">未开始配送</span></td>
+                                            <td>
+                                                <div class="progress progress-striped progress-sm">
+                                                    <div class="progress-bar progress-bar-danger" style="width: 0%;"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>9</td>
+                                            <td>大服水果摊</td>
+                                            <td>西瓜</td>
+                                            <td>10元</td>
+                                            <td><span class="label label-info">正在配送</span></td>
+                                            <td>
+                                                <div class="progress progress-striped progress-sm">
+                                                    <div class="progress-bar progress-bar-info" style="width: 20%;"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </main>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+<script src="js/jconfirm/jquery-confirm.min.js"></script>
+<!--公共JS-->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+
+    window.onload = function () {
+
+    };
+
+    function add() {
+
+        var value = $("#myform").serialize();
+        $.ajax({
+            url: '/purchase/add',
+            method: 'post',
+            data: value,
+            success: function (data) {
+                if ("success" === data.status) {
+                    $("#myform:input").val("")
+                    $.confirm({
+                        title: '成功提示',
+                        content: data.data,
+                        type: 'green',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-green',
+                                action: function () {
+                                    // window.location.href = "http://localhost:8080/toUserList";
+                                }
+                            },
+                        }
+                    });
+                } else {
+                    $.confirm({
+                        title: '提示',
+                        content: data.data,
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-red',
+                                action: function () {
+                                }
+                            },
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>

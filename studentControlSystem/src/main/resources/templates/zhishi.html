@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>疫情系统后台管理</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="keywords" content="LightYear">
+    <meta name="description" content="LightYear">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+        <div th:include="/index"></div>
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+            <div class="container-fluid">
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header"><h3 style="color:#14b56f">疫情小知识标签</h3></div>
+                            <div class="card-body">
+
+                                <span class="label label-dark">权威辟谣</span>
+                                <span class="label label-primary">病毒知识</span>
+                                <span class="label label-success">个人防护</span>
+                                <span class="label label-info">日常消毒</span>
+                                <span class="label label-warning">临床表现</span>
+                                <span class="label label-danger">隔离措施</span>
+                                <span class="label label-purple">新冠症状</span>
+                                <span class="label label-pink">宠物预防</span>
+                                <span class="label label-cyan">治疗场所</span>
+                                <span class="label label-yellow">核酸检测</span>
+                                <span class="label label-brown">新冠疫苗</span>
+                                <span class="label label-secondary">口罩使用</span>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header"><h3 style="color: #2ba3f6">防疫知识小卡片</h3></div>
+                            <div class="card-body">
+                                <h4 style="color:#14abfa">点击卡片，展开内容，进行学习!</h4>
+
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" role="tab" id="heading1">
+                                            <h4 class="panel-title">
+                                                <!--                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapse1">-->
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                                                    一. 新型冠状临床表现有哪些？
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+                                            <div class="panel-body">
+                                                <li>以发热，乏力、干咳为主要表现。鼻塞、流涕等上呼吸道症状少见。</li>
+                                                <li>约半数患者多在一周后出现呼吸困难，严重者快速进展为急性呼吸窘迫综合征、 脓症休克、难以纠正的代谢性酸中和出凝血功能障碍。</li>
+                                                <li>值得注意的是， 重症危重症患者病程中可为中低热，甚至无明显发热。</li>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-cyan">
+                                        <div class="panel-heading" role="tab" id="heading2">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                                    二. 疫情期间如何加强个人防护？
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                                            <div class="panel-body">
+                                                <ol>
+                                                    <li>避免前往人群密集的公共场所。避免接触发热呼吸道病人， 如需接触时要佩戴外科口罩。</li>
+                                                    <li>勤洗手，尤其在手被呼吸道分泌物污染时、触摸过公共设施后、照顾发热呼吸道或呕吐腹泻病人后。</li>
+                                                    <li>不要随地吐痰。打喷嚏或咳嗽时用纸巾或袖肘遮住口、鼻。</li>
+                                                    <li>加强锻炼，规律作息，保持室内空气流通。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading" role="tab" id="heading3">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                                    三. 若与确诊病例或无症状感染者有过密切接触，应如何处理？
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                                            <div class="panel-body">
+                                                <ol>
+                                                    <li>立即向所在社区或村委会登记备案，社区或村委会要第一时间向所在地新冠肺炎疫情防控指挥部报告，并持续跟踪反馈情况，实行每日零报告制度 </li>>
+                                                    <li>与患者接触后，暂不要外出，减少与家人接触，从与患者接触之日起，居家或到集中隔离医学观察场所隔离观察14天 </li>>
+                                                    <li>在此期间若出现发热、乏力、咳嗽等呼吸道症状时，请第一时间与辖区疾病预防控制中心联系或佩戴口罩，前往当地卫生健康行政部门指定的医疗机构发热门诊规范就诊，就医途中，请勿乘坐公共交通工具，并全程佩戴口罩。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="panel panel-dark">
+                                        <div class="panel-heading" role="tab" id="heading4">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4o">
+                                                    四. 口罩使用，有何注意事项？
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+                                            <div class="panel-body">
+                                                <ol>
+                                                    <li>注意卫生，佩戴前、脱除后应做好手部卫生。</li>
+                                                    <li>需重复使用的口罩，使用后悬挂于清洁、干燥的通风处。</li>
+                                                    <li>备用口罩建议存放在原包装袋，如非独立包装可存放在一次性使用食品袋中，并确保其不变形。</li>
+                                                    <li>如佩戴口罩感觉胸闷、气短等不适时，应立即前往户外开放场所，摘除口罩。</li>
+                                                    <li>废弃口罩归为其他垃圾进行处理，医疗卫生机构、人员密集场所工作人员或其他可疑污染的废弃口罩，需单独存放，并按有害垃圾进行处理。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading" role="tab" id="heading5">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                                    五. 针对目前疾病流行情况，应该如何消毒？
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+                                            <div class="panel-body">
+                                                <ol>
+                                                    <li>病毒对紫外线和热敏感，56℃30分钟、乙醚、75%乙醇、含氯消毒剂、过氧乙酸和氯仿等脂溶剂均可有效灭活病毒</li>
+                                                    <li>值得注意的是，氯已定不能有效灭活病毒</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading" role="tab" id="heading6">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                                                    六. 普通公众应如何佩戴口罩？
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+                                            <div class="panel-body">
+                                                <ol>
+                                                    <li>居家。 防护建议：无需戴口罩</li>
+                                                    <li>户外、公园。 防护建议：建议随身备用一次性使用医用口罩或医用外科口罩，保持1米以上社交安全距离，无需戴口罩。</li>
+                                                    <li>交通工具。 防护建议：骑车、自驾车时，无需戴口罩；乘坐公交、地铁、长途汽车、火车、轮船、飞机等公共交通工具时，戴一次性使用医用口罩或医用外科口罩。</li>
+                                                    <li>超市、商场、餐厅、展馆/博物馆、体育馆/健身房等场所。 防护建议：公众需随身备用一次性使用医用口罩或医用外科口罩。在无人员聚集、通风良好、保持1米以上社交安全距离情况下，无需戴口罩。</li>
+                                                    <li>剧场、影剧院、地下或相对封闭购物场所、网吧及乘坐厢式电梯等通风不良的公共场所。 防护建议：戴一次性使用医用口罩或医用外科口罩。</li>
+                                                    <li>会议室。 防护建议：确保有效通风换气，保持人员1米以上社交安全距离情况下，无需戴口罩。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading" role="tab" id="heading7">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                                                    七. 普通感冒与新冠肺炎的区别有哪些？
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
+                                            <div class="panel-body">
+                                                <ol>
+                                                    <li>冬春季节本就是呼吸道传染病高发时节，且普通感冒、流感和新型冠状病毒感染的肺炎均可导致发热，但症状各有不同</li>
+                                                    <li>普通感冒通常表现为明显的上呼吸道症状，如打喷嚏、流鼻涕、咽喉不适等，全身症状较轻，不发热或仅有短暂发热。流感多表现为高热，伴畏寒、头痛、全身酸痛、鼻塞、流涕、干咳、胸痛、恶心、食欲不振等全身症状。</li>
+                                                    <li>新型冠状病毒感染的肺炎，以发热、乏力、干咳为主要表现，少数伴有鼻塞、流涕、腹泻等症状。</li>
+                                                    <li>对于出现发热、咳嗽等症状的人，以下情况建议采取居家隔离的方式进行观察：症状轻微，体温低于38℃，生命体征平稳，无明显气短、气促、胸闷、呼吸困难；无严重呼吸系统、心血管系统等基础疾病及严重肥胖者。</li>
+                                                    <li>剧场、影剧院、地下或相对封闭购物场所、网吧及乘坐厢式电梯等通风不良的公共场所。 防护建议：戴一次性使用医用口罩或医用外科口罩。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading" role="tab" id="heading8">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                                                    八. 冠状病毒如何分类？
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading8">
+                                            <div class="panel-body">
+                                                <ol>
+                                                    <li>冠状病毒大部分感染动物，目前从人分离的冠状病毒主要有普通冠状病毒229E、OC43和SARS冠状病毒（SARS-CoV）三个型别。</li>
+                                                    <li>此次从武汉市不明原因肺炎患者下呼吸道分离出的冠状病毒为一种新型冠状病毒，WHO命名为2019-nCoV。</li>
+                                                    <li>新型冠状病毒目前可以归到β属冠状病毒中，该种属在演化树上来说，与SARS-CoV和MERS-CoV接近，但不完全一样。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading" role="tab" id="heading9">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                                                    九. 宠物会得新型冠状病毒肺炎，是真的吗？
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading9">
+                                            <div class="panel-body">
+                                                <ol>
+                                                    <li>目前并无证据。此次的新型冠状病毒，从进化起源和病毒的亲缘关系上看，和SARS有85%左右的相似性。</li>
+                                                    <li>我国的一项研究发现，新型冠状病毒与一种蝙蝠中的冠状病毒的序列一致性高达96%，且进入细胞的受体与SARS病毒一样，均为ACE2。这也就提示，新型冠状病毒的自然宿主可能和SARS一样，是蝙蝠。</li>
+                                                    <li>在这项研究中，马蹄蝠、果子狸、猪的细胞实验提示，新型冠状病毒同样能通过ACE2进入细胞，但小鼠除外。对于常见的宠物（猫、狗）是否也会因同样的途径感染新型冠状病毒，目前暂时没有相关的病例报道。</li>
+                                                    <li>WHO也认为目前没有证据显示猫狗会感染并传播新型冠状病毒。与新型冠状病毒相似度颇高的SARS病毒，在疫情期间，没有发现宠物传播的案例。</li>
+                                                    <li>但荷兰的一项研究发现，SARS可感染宠物猫、浣熊、雪貂等动物的呼吸道上皮细胞。</li>
+                                                    <li>李兰娟院士对这个问题的看法是，这个病毒是在哺乳动物之间传播，所以我们对哺乳动物也需要加以防备。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading" role="tab" id="heading10">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                                                    十. 治疗新冠肺炎如何选择治疗场所？
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapse10" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading10">
+                                            <div class="panel-body">
+                                                <ol>
+                                                    <li>疑似及确诊病例应在具备有效隔离条件和防护条件的定点医院隔离治疗，疑似病例应单人单间隔离治疗，确诊病例可多人收治在同一病室。</li>
+                                                    <li>危重型病例应尽早收入ICU治疗。</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- End-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+        <!--End 页面主要内容-->
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+<script>
+    // 按钮示例
+    $('#myButton').on('click', function () {
+        var $btn = $(this).button('loading');
+        setTimeout(function() {
+            $btn.button("reset")
+        }, 3e3)
+    });
+</script>
+</body>
+</html>

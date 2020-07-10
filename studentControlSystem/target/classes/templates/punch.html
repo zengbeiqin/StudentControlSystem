@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <title>打卡</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <!--对话框-->
+    <link rel="stylesheet" href="js/jconfirm/jquery-confirm.min.css">
+
+
+</head>
+<body>
+
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+
+        <div th:include="/index"></div>
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+            <div class="container-fluid">
+
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header"><h3>健康打卡</h3></div>
+                        <div class="card-body">
+
+                            <form class="form-horizontal" action="#" method="post" id="myform">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="heat">今日体温</label>
+                                    <div class="col-md-4">
+                                        <input class="form-control" type="text" id="heat" name="heat"
+                                               placeholder="请输入您的体温..">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" >是否已返校</label>
+                                    <div class=" col-md-7">
+                                        <label>
+                                            <input type="radio" name="return"  value="0" checked>
+                                        </label>未返校
+                                        <label>
+                                            <input type="radio" name="return"  value="1" >
+                                        </label>返校
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" >是否发热</label>
+                                    <div class=" col-md-7">
+                                        <label>
+                                            <input type="radio" name="fever"  value="0" checked>
+                                        </label>未发热
+                                        <label>
+                                            <input type="radio" name="fever"  value="1" >
+                                        </label>发热
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" >是否接触确诊患者</label>
+                                    <div class=" col-md-7">
+                                        <label>
+                                            <input type="radio" name="contact"  value="0" checked>
+                                        </label>未接触
+                                        <label>
+                                            <input type="radio" name="contact"  value="1" >
+                                        </label>已接触
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" >周围是否出现确诊患者</label>
+                                    <div class=" col-md-7">
+                                        <label>
+                                            <input type="radio" name="arise"  value="0" checked>
+                                        </label>未出现
+                                        <label>
+                                            <input type="radio" name="arise"  value="1" >
+                                        </label>已出现
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" >是否正在进行隔离</label>
+                                    <div class=" col-md-7">
+                                        <label>
+                                            <input type="radio" name="close"  value="0" checked>
+                                        </label>未隔离
+                                        <label>
+                                            <input type="radio" name="close"  value="1" >
+                                        </label>已隔离
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="heat">其他方面如有困难，请备注</label>
+                                    <div class="col-md-4">
+                                        <input class="form-control" type="text" id="note" name="note"
+                                               placeholder="请输入备注..">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-9 col-md-offset-3">
+                                        <button class="btn btn-primary" type="button" onclick="add()">打卡</button>
+                                        <button class="btn btn-danger" type="reset">取消</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </main>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+<script src="js/jconfirm/jquery-confirm.min.js"></script>
+<!--公共JS-->
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+
+    window.onload = function () {
+
+    };
+
+    function add() {
+        var value = $("#myform").serialize();
+        $.ajax({
+            url: '/health/addHealth',
+            method: 'post',
+            data: value,
+            success: function (data) {
+                if ("success" === data.status) {
+                    $.confirm({
+                        title: '成功提示',
+                        content: '您今日健康打卡成功！',
+                        type: 'green',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-green',
+                                action: function () {
+                                   // window.location.href = "http://localhost:8080/toNewsList";
+                                }
+                            },
+                        }
+                    });
+                } else {
+                    $.confirm({
+                        title: '提示',
+                        content: '今日已打卡，无需重复打卡',
+                        type: 'red',
+                        typeAnimated: true,
+                        buttons: {
+                            tryAgain: {
+                                text: '确定',
+                                btnClass: 'btn-red',
+                                action: function () {
+                                }
+                            },
+                        }
+                    });
+                }
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>
